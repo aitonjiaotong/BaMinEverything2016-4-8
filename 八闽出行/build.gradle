@@ -1,0 +1,92 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '23.0.1'
+
+    defaultConfig {
+        applicationId "com.aiton.bamin.changtukepiao"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 17
+        versionName "1.1.6"
+        manifestPlaceholders = [
+//个人推送相关信息
+                GETUI_APP_ID    : "QGOf2m2g5b8qaAyYHmKZx2",
+
+                GETUI_APP_KEY   : "st5gtcfDiW9dBEtIe7RX72",
+
+                GETUI_APP_SECRET: "mmgOP0vlHw5HY7uwl1P1R5",
+
+                PACKAGE_NAME    : applicationId
+
+        ]
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+//        classpath 'com.android.tools.build:gradle:' + gradle build tool version
+    }
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':SMSSDK')
+    compile files('libs/dom4j-1.6.1.jar')
+    compile project(':circleimageview')
+    compile files('libs/alipaySdk-20160120.jar')
+    compile project(':library')
+    compile files('libs/BaiduLBS_Android.jar')
+    compile project(':lib_slidingmenu')
+    compile project(':CheckBox')
+    compile project(':slideDateTimePicker')
+    compile files('libs/zxing.jar')
+    compile files('libs/libammsdk.jar')
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:support-v4:23.1.1'
+    compile 'com.umeng.analytics:analytics:latest.integration'
+    compile project(':lib_shane')
+    compile 'com.getui:sdk:2.7.0.0'
+    compile 'com.getui:ext:2.0.3'
+    compile files('libs/alisdk-ut-5.jar')
+    compile(name: 'feedbackSdk', ext: 'aar')
+    //主反馈功能
+    compile files('libs/securityguard-3.1.27.jar')
+    //提供数据统计支持
+    compile files('libs/alisdk-ut-5.jar')
+    //提供数据统计支持
+    compile project(':library_refreash')
+    compile files('libs/butterknife-7.0.1.jar')
+}
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url "http://mvn.gt.igexin.com/nexus/content/repositories/releases/"
+        }
+    }
+}
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+android {
+    packagingOptions {
+//        exclude 'META-INF/DEPENDENCIES'
+//        exclude 'META-INF/NOTICE'
+//        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+    // ...
+}
